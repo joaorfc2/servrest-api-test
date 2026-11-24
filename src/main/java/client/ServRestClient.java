@@ -2,6 +2,7 @@ package client;
 
 import io.restassured.response.Response;
 import dto.LoginRequest;
+import dto.ProdutoRequest;
 import dto.UsuarioRequest;
 import util.BaseTeste;
 
@@ -26,5 +27,15 @@ public class ServRestClient extends BaseTeste {
                 .body(usuarioBody)
                 .when()
                 .post("/usuarios");
+    }
+
+    public Response postProduto(ProdutoRequest produtoBody, String authorization){
+
+        return given()
+                .spec(requestSpecification)
+                .header("Authorization", authorization)
+                .body(produtoBody)
+                .when()
+                .post("/produtos");
     }
 }

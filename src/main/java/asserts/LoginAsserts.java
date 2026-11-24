@@ -11,7 +11,7 @@ public class LoginAsserts {
     ServRestClient servRestClient = new ServRestClient();
     LoginResponse loginResponse;
 
-    public void validaLoginComSucesso(LoginRequest bodyLogin) {
+    public LoginResponse validaLoginComSucesso(LoginRequest bodyLogin) {
 
         loginResponse = servRestClient.postLogin(bodyLogin).
                 then()
@@ -22,6 +22,7 @@ public class LoginAsserts {
         assertThat(loginResponse.getMessage(), containsString("Login realizado com sucesso"));
         assertThat(loginResponse.getAuthorization(), is(notNullValue()));
 
+        return loginResponse;
     }
 
     public void validaLoginComErro(LoginRequest bodyLogin) {
