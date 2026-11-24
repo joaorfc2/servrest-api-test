@@ -1,6 +1,8 @@
 package client;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import dto.CarrinhoRequest;
 import dto.LoginRequest;
 import dto.ProdutoRequest;
 import dto.UsuarioRequest;
@@ -37,5 +39,25 @@ public class ServRestClient extends BaseTeste {
                 .body(produtoBody)
                 .when()
                 .post("/produtos");
+    }
+
+    public Response postCarrinho(CarrinhoRequest carrinhoBody, String authorization){
+
+        return given()
+                .spec(requestSpecification)
+                .header("Authorization", authorization)
+                .body(carrinhoBody)
+                .when()
+                .post("/carrinhos");
+    }
+
+    public Response deleteConcluirCompra(String authorization){
+
+        return given()
+                .spec(requestSpecification)
+                .header("Authorization", authorization)
+                .accept(ContentType.JSON)
+                .when()
+                .delete("/carrinhos/concluir-compra");
     }
 }
