@@ -12,7 +12,7 @@ O projeto utiliza a API pública do ServeRest como sistema sob teste.
 
 ## Tecnologias Utilizadas
 
-Java 17
+Java 21
 Maven
 RestAssured
 TestNG
